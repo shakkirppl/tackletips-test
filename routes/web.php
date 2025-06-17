@@ -94,7 +94,7 @@ Route::get('/orders-tracking', [AllOrderController::class, 'orders_tracking'])->
 Route::post('/orders/print', [OrderController::class, 'printSelected'])->name('orders.print');
 Route::get('/order-dashboard', [OrderDashboardController::class, 'index'])->name('order.dashboard');
 
-Route::patch('/orders/update-status/{orderId}', [AllOrderController::class, 'updateStatus'])->name('orders.update-status');//new route
+
 Route::get('/order-dashboard', [OrderDashboardController::class, 'index'])->name('order.dashboard');
 Route::get('/order/invoice/a4/{id}', [AllOrderController::class, 'printInvoiceA4'])->name('order.invoice');//new
 Route::get('/order/invoice/thermal/{id}', [AllOrderController::class, 'printInvoicethermal'])->name('order.invoicethermal');//new
