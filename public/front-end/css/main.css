@@ -1,0 +1,875 @@
+@import 'https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Open+Sans:400,700';
+body {
+    font-family: open sans, sans-serif;
+    font-weight: 400;
+    /*font-size: 14px;*/
+    line-height: 24px;
+    overflow-x: hidden
+}
+html {
+    overflow-x: hidden
+}
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: auto;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color:#d7ce3b;
+}
+
+:-webkit-scrollbar-track {
+    background: #FFF;
+    box-shadow: inset 1px 1px 2px #d7ce3b;
+    -webkit-box-shadow: inset 1px 1px 2px #d7ce3b;
+    border: 1px solid #d7ce3b;
+}
+
+::-moz-scrollbar {
+    width: 8px;
+    height: auto;
+}
+
+::-moz-scrollbar-thumb {
+    background-color:#d7ce3b;
+}
+
+:-moz-scrollbar-track {
+    background: #FFF;
+    box-shadow: inset 1px 1px 2px #d7ce3b;
+    -moz-box-shadow: inset 1px 1px 2px #d7ce3b;
+    border: 1px solid #d7ce3b;
+}
+a {
+  text-decoration: none !important;
+  color: #000;
+}
+
+.row>* {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.row {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+
+.top-container {
+  /* background-color: #f1f1f1; */
+  padding: 14px 0px;
+  text-align: center;
+}
+
+.header {
+  position: relative;
+  padding: 2px 16px;
+  background: #000;
+  color: #f1f1f1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  background-color: #fff;
+  padding: 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.sticky .logo {
+  top: 0;
+}
+
+.sticky .logo img {
+  width: 80px;
+}
+
+.sticky .nav-link {
+
+  color: #000;
+}
+
+.sticky .nav-link:hover {
+  color: #000;
+}
+
+.sticky+.content {
+  padding-top: 102px;
+}
+
+.search-container {
+  /* display: flex; */
+      align-items: center;
+      justify-content: end;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
+  padding: 5px;
+  max-width: 350px;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  /* flex-grow: 1; */
+  width: 100%;
+  font-size: 12px;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button .search-icon {
+  color: #555;
+  font-size: 18px;
+}
+
+.search-button:hover .search-icon {
+  color: #000;
+}
+
+
+/* dropdown box */
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  display: flex;
+
+}
+
+/* Dropdown button styling */
+.dropdown-button {
+  background-color: #000;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  /* border-radius: 4px; */
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  position: relative;
+  /* For positioning the dropdown menu */
+}
+
+/* Arrow styling */
+.dropdown-button .arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown button hover */
+.dropdown-button:hover {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.login-button{
+  /* background-color: #d7ce3b !important; */
+  color: #000 !important;
+}
+.login-button:hover{
+  /* background-color: #fff !important;
+  border: 1px solid #000 !important;
+  color: #000 !important; */
+}
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: none;
+  /* Initially hidden */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 200px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  opacity: 0;
+  /* Start with the menu invisible */
+  transform: translateY(10px);
+  /* Start from below */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* Smooth transition */
+}
+
+/* Dropdown menu links */
+.dropdown-menu a {
+  font-size: 12px;
+  display: block;
+  padding: 6px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Hover effect for the links */
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover with animation */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  /* Fade in */
+  transform: translateY(0);
+  /* Slide into place */
+}
+
+/* Rotate arrow on hover */
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+  font-size: 24px;
+  /* Adjust icon size */
+  cursor: pointer;
+}
+
+.cart-container i {
+  font-size: 24px;
+  color: #000;
+}
+
+.cart-icon {
+  font-size: 32px;
+  /* Larger size for the cart icon */
+}
+
+.cart-count {
+  position: absolute;
+  top: 2px;
+  right: -9px;
+  background-color: #d7ce3b;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cart-container:hover .cart-count {
+  background-color: darkred;
+}
+
+
+/* Social media container */
+.social-media {
+  display: flex
+  ;
+      gap: 10px;
+      justify-content: end;
+      align-items: center;
+      padding: 0px 10px;
+}
+
+/* Styling for each link */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  background-color: #000;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link i {
+  font-size: 14px;
+}
+
+/* Individual platform colors */
+.facebook {
+  /* background-color: #3b5998; */
+}
+
+.instagram {
+  /* background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); */
+}
+
+.youtube {
+  /* background-color: #ff0000; */
+}
+
+/* Hover effects */
+.social-link:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+
+/* General Navbar Styling */
+.navbar {
+  /* background-color: #333; */
+  padding: 10px 20px;
+  justify-content: end !important;
+}
+
+.navlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+  padding: 0px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  /* background-color: #575757;
+  border-radius: 4px; */
+}
+
+/* Dropdown Menu Styling */
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  z-index: 999;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  height: auto;
+  overflow-y: scroll;
+  max-height: 300px;
+}
+
+
+/* Chrome, Safari, Edge */
+/* .dropdown-list::-webkit-scrollbar {
+   scrollbar-width: thin;        
+  scrollbar-color: #d7ce3b  #000; 
+}
+
+* {
+  scrollbar-width: thin;            
+ scrollbar-color: #d7ce3b  #000;
+}
+
+.dropdown-list::-webkit-scrollbar-track {
+  background: #d7ce3b;            
+}
+
+.dropdown-list::-webkit-scrollbar-thumb {
+  background: #000;             
+} */
+
+/* Firefox */
+.dropdown-list {
+ 
+}
+/* Styling for each list item */
+.dropdown-list li {
+  width: 150px;
+}
+
+/* Link styling inside the dropdown */
+.dropdown-list a {
+  color: #000;
+  text-decoration: none;
+  padding: 6px 15px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for links */
+.dropdown-list a:hover {
+  background-color: #575757;
+  color: #fff;
+}
+
+/* Show dropdown menu with animation on hover */
+.nav-item:hover .dropdown-list {
+  display: block;
+  opacity: 1;
+  /* Fade in */
+  transform: translateY(0);
+  /* Translate from top to bottom */
+}
+
+
+.logo {
+  position: absolute;
+  top: -62px;
+}
+
+.logo img {
+  width: 100px;
+}
+
+.swiper.swiper-main {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-main .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-main .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-main .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: #000 !important;
+
+  /* background: rgba(0, 0, 0, 0.2); */
+}
+
+.swiper-main .swiper-pagination-bullet-active {
+  color: #fff !important;
+  background: #000;
+}
+
+.swiper.swiper-logo {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-logo .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  /* background: #fff; */
+  justify-content: center;
+  /* margin: 10px; */
+  border: 1px solid #000;
+}
+
+.swiper-logo .swiper-slide img {
+  display: block;
+  height: 90px;
+  width: 100%;
+  /* width: 100%;
+  height: 100%; */
+  object-fit: contain;
+  background: #fff;
+ padding: 2px;
+  /* padding: 10px; */
+  /* border-radius: 10px; */
+  /* margin: 10px 0px; */
+  /* outline: 1px solid #000;
+  outline-offset: 5px; */
+  /* width: 150px; */
+  /* height: 100px; */
+}
+
+.swiper-logo .swiper-button-next:after,
+.swiper-logo .swiper-button-prev:after {
+  font-size: 10px !important;
+  
+  color: #d7ce3b;
+  font-weight: 800;
+}
+
+/* .swiper-logo .swiper-button-next:after,
+.swiper-logo .swiper-button-prev:after {
+  font-size: 10px;
+} */
+
+
+.swiper-logo .swiper-button-next,
+.swiper-logo .swiper-rtl .swiper-button-prev {
+  width: 30px;
+  border-radius: 50px;
+  height: 30px;
+  background-color: #000;
+}
+
+.swiper-logo .swiper-button-prev,
+.swiper-logo .swiper-rtl .swiper-button-prev {
+  width: 30px;
+  border-radius: 50px;
+  height: 30px;
+  background-color: #000;
+}
+
+.main-slider {
+  /* margin-bottom: 50px; */
+}
+
+.logo-slider {
+  /* background-color: #333; */
+  /* background-color: #aca734; */
+  /* background-color: rgb(0 0 0 / 90%); */
+  /* padding: 50px 0px;; */
+  /* margin: 50px 0px; */
+  /* background-color: rgba(9, 9, 9, .7); */
+}
+
+.main-categories {
+  /* margin: 50px 0px; */
+}
+
+.main-new-arrivals {
+  /* margin: 50px 0px; */
+}
+
+.padding-top {
+  padding-top: 50px;
+}
+
+.heading h1 {
+  font-size: 30px;
+    margin-bottom: 30px;
+    /* text-decoration: underline; */
+    padding-bottom: 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.view-all-button{
+  text-align: end;
+}
+.view-all-button a{
+  color: #000;
+}
+.view-all-button h1{
+  font-size: 14px;
+    margin-bottom: 30px;
+    /* text-decoration: underline; */
+    padding-bottom: 10px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.div-main { 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+}
+
+.categories-main {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.categories-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px 15px;
+  max-width: 100%;
+  transition: all .5s ease-in-out;
+  overflow: hidden;
+
+}
+
+.categories-img img:hover {
+  transform: scale(1.05);
+}
+
+a .categories-head h1 {
+  color: #000;
+}
+
+.categories-head h1 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Set up the container for the element */
+.bounce-effect {
+  display: inline-block;
+
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Define the keyframe for the bounce effect */
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-10px);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Apply the bounce effect on hover */
+.bounce-effect:hover {
+  animation: bounce 0.5s ease-out;
+}
+
+.fishing-all-about-you {
+  position: relative;
+}
+
+.fishing-all-about-you img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+
+}
+
+.fishing-all-about-you-contents {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  right: 0;
+  background: #010101d9;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.fishing-all-about-you-contents h1 {
+  color: #fff;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.fishing-all-about-you-contents p {
+  color: #d7ce3b;
+  font-size: 14px;
+}
+
+.fishing-all-about-you-contents a {
+  color: #fff;
+  font-size: 14px;
+}
+
+
+.new-arrivals {
+  background-color: #f1f2f4;
+  padding: 10px;
+}
+
+.swiper-newarrival .swiper-wrapper .swiper-slide .product-details {
+  padding: 10px;
+  background-color: white;
+}
+
+.swiper-newarrival .swiper-wrapper .swiper-slide .product-details h1 {
+  font-size: 18px;
+}
+
+
+.swiper.swiper-newarrival {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-newarrival .swiper-slide {
+
+  /* padding: 10px; */
+
+}
+
+.swiper-newarrival .swiper-slide img {
+  display: block;
+  width: 100%;
+
+}
+
+.swiper-newarrival .swiper-button-next:after,
+.swiper-newarrival .swiper-button-prev:after {
+  font-size: 10px!important;
+  color: #d7ce3b ;
+}
+
+
+
+
+.swiper-newarrival .swiper-button-next:after,
+.swiper-newarrival .swiper-button-prev:after {
+  font-size: 10px!important;
+  color: #d7ce3b; 
+}
+
+.swiper-newarrival .swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  width: 30px;
+  border-radius: 50px;
+  height: 30px;
+  background-color: #000;
+}
+
+.swiper-newarrival .swiper-button-prev,
+.swiper-rtl .swiper-button-prev {
+  width: 30px;
+  border-radius: 50px;
+  height: 30px;
+  background-color: #000;
+}
+
+.product-view {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  background-color: white;
+}
+
+.product-categories {
+  background-color: #f1f2f4;
+  padding: 10px;
+}
+
+.product-view .product-view-img img {
+  width: 100%;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.product-view:hover .product-view-img img {
+  transform: scale(1.05);
+}
+
+.product-view-details a {
+
+  color: black;
+}
+
+.product-view-details {
+  padding: 10px;
+}
+
+.product-view-details h1 {
+  font-size: 12px;
+}
+
+a.product-view-details h1 {
+  font-size: 14px;
+  color: black;
+}
+
+.product-price p {
+  font-size: 18px;
+  color: #d7ce3b;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.reviews-icon i {
+  font-size: 12px;
+  color: black;
+}
+
+.review-main {
+  display: flex;
+      gap: 10px;
+      border: 1px solid #000;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
+
+}
+
+.review-main {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+
+}
+
+.review-icon-desc h1 {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.review-icon-desc .rating i{
+  font-size: 10px;
+}

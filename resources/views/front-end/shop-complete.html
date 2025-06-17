@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tackle Tips</title>
+    <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/main.css">
+    <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/product-detail-view.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    @include('front-end.include.header')
+    <!-- header -->
+    <section class="product-detail-section">
+        <div class="container">
+            <div class="row">
+                <div class="product-detail-header">
+                    <h1>Payment</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="padding-top"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="login">
+                        <div class="login-form-container">
+                            <div class="login-text">
+                                <h3>Price Info</h3>
+                                
+                            </div>
+
+                            <table class="shop-complete-table">
+                                <tbody>
+                                
+                                    <tr>
+                                        <th class="priceinfo">Price:</th>
+                                        <td><span id="oder_total"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="priceinfo">Delivery Chargess:</th>
+                                        <td><span id="oder_total"></span></td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                    </tr>
+
+                                    <hr>
+
+                                    
+                                    <tr>
+                                       
+                                        <th class="totalprice">GRAND TOTAL:</th>
+                                        <td class="totalpricegrand"><span id="oder_total">₹407.00</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+ 
+                            <table  class="billing-info" width="100%" height="100" border="1" align="center">
+
+
+                                <input type="hidden" name="tid" id="tid" readonly="">
+
+
+                                <input type="hidden" name="merchant_id" value="2246391" readonly="">
+
+
+                                <input type="hidden" name="order_id" value="2415">
+
+
+                                <input type="hidden" name="amount" value="407">
+
+
+                                <input type="hidden" name="currency" value="INR">
+
+
+                                <input type="hidden" name="redirect_url" value="">
+                                <input type="hidden" name="cancel_url" value="">
+
+                                <!--<input type="hidden" name="redirect_url" value="https://tackletips.in/ccavenue/callback"/>-->
+                                <!--<input type="hidden" name="cancel_url" value="https://tackletips.in/ccavenue/callback"/>-->
+
+
+                                <input type="hidden" name="language" value="EN">
+
+
+                                <tbody>
+                                    <tr>
+                                        <td>Billing Name :</td>
+
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_name"
+                                                value="spanixoadmin"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Address :</td>
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_address" value="3">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing City :</td>
+                                        <td><input  class="billing-input" style="border:none;" type="text" name="billing_city" value="d"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing State :</td>
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_state" value="KL">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Zip :</td>
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_zip" value="8888">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Country :</td>
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_country"
+                                                value="India"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Tel :</td>
+                                        <td><input  class="billing-input" type="text" style="border:none;" name="billing_tel" id="billing_tel"
+                                                value="9999999999" required="">
+                                            <span id="errmsg" style="color:red;"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Email :</td>
+                                        <td><input class="billing-input" style="border:none;" type="text" name="billing_email"
+                                                value="test@test.com"></td>
+                                    </tr>
+
+
+
+
+                                    <tr>
+                                        <td id="processing_fee" colspan="2">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-top"></div>
+    </section>
+
+    @include('front-end.include.footar')
+    <!-- footar -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="{{URL::to('/')}}/front-end/js/main.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/bootstrap.bundle.min.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/bootstrap.min.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/bootstrap.popper.min.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/jquery.min.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/owl.carousel.min.js"></script>
+    <script src="{{URL::to('/')}}/front-end/js/scriptfont.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>

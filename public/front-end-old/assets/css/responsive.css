@@ -1,0 +1,115 @@
+
+
+@media(min-width:768px) and (max-width:1170px) {
+
+    .navbar-default .navbar-nav>li>a {
+       padding: 1px 8px;
+        text-transform: capitalize
+    }
+    .categories-wrapper .block-title {
+        font-size: 13px
+    }
+    .vertical-menu li>ul.dropdown-menu {
+        left: 220px
+    }
+    #carousel-area .carousel-control {
+        top: 45%
+    }
+    .navbar-default .megamenu1 {
+        width: 450px;
+        max-width: 450px
+    }
+     .navbar-brand img {
+
+    width: 90px;
+    /* position: initial; */
+    top: -33px;
+}
+   
+}
+@media(max-width:768px) {
+    .link-inline {
+        /*display: none*/
+        padding:2px;
+    }
+}
+@media(max-width:768px) {
+    .pull-right {
+        display: contents;
+    }
+}
+.tp-bgimg.defaultimg{
+    background-size: contain !important    
+    }  
+@media(max-width:767px) {
+
+    .navbar-default .navbar-brand {
+        position: absolute;
+        top: 0;
+        padding: 15px
+    }
+    .navbar-brand img {
+    width:58px;
+    position: initial;
+    top: auto;
+    right: auto;
+}
+.navbar {
+    padding-bottom: 15px;
+    background: #fafafa;
+}   
+ .navbar-default.affix .navbar-brand {
+    height:55px;
+    position:absolute;
+    padding: 0px 15px;
+}
+    .navbar-default.affix .slicknav_btn {
+      top:0
+    }    
+.navbar-default.affix {
+padding-bottom: 0;
+}
+.navbar-default.affix .navbar-brand img {
+    width: 50px;
+    top: 0px;
+}
+    .tp-bgimg.defaultimg{
+    background-size: contain !important    
+    }   
+    
+}
+@media(max-width:640px) {
+ 
+    .navbar-default .navbar-brand {
+        position: absolute;
+        top: 0;
+        padding: 15px
+    }
+    .navbar-default.affix .navbar-brand {
+        padding: 5px 15px
+    }
+   
+}
+@media(max-width:480px) {
+    .top-bar {
+       
+    }
+    /*.search-area{*/
+    /*   margin:0px; */
+    /*}*/
+    .navbar-default .navbar-brand {
+        position: absolute;
+        top: 0;
+        padding:6px
+    }
+    .navbar-default.affix .navbar-brand {
+        padding:0px
+    }
+    .vertical-menu li>ul.dropdown-menu {
+        right: 0;
+        left: 0;
+        top: 50px
+    }
+    
+  
+}

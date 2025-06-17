@@ -1,0 +1,2 @@
+[23-Jan-2024 07:12:10 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\FrontController::forgot_password() in /home/tackletips/public_html/app/Http/Controllers/FrontController.php on line 2046
+[23-Jan-2024 16:41:23 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\FrontController::forgot_password() in /home/tackletips/public_html/app/Http/Controllers/FrontController.php on line 2049
