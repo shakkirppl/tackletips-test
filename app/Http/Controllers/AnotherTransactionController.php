@@ -285,6 +285,7 @@ public function user_updation(Request $request)
                         if ($exuser) {
                              $ustomer->sync    = 1;
                              $ustomer->save();
+                             return 'exsit'; 
                             \Log::channel('daily')->warning("Skipped: User already exists - Customer ID: {$ustomer->id}, Email: {$ustomer->customer_email}");
                             return;
                         }
@@ -293,6 +294,7 @@ public function user_updation(Request $request)
                         try {
                             $pass = Crypt::decryptString($ustomer->password);
                         } catch (\Exception $e) {
+                             return 'error'; 
                             \Log::channel('daily')->error("Decryption failed for Customer ID: {$ustomer->id}, Error: " . $e->getMessage());
                             return;
                         }
