@@ -283,6 +283,8 @@ public function user_updation(Request $request)
                         // Skip if user already exists
                         $exuser = User::where('email', $ustomer->customer_email)->first();
                         if ($exuser) {
+                             $ustomer->sync    = 1;
+                             $ustomer->save();
                             \Log::channel('daily')->warning("Skipped: User already exists - Customer ID: {$ustomer->id}, Email: {$ustomer->customer_email}");
                             return;
                         }
@@ -333,7 +335,7 @@ public function user_updation(Request $request)
                     }
                 }
             });
-return $remaining = CustomerRegistration::where('sync', 0)->get();
+// return $remaining = CustomerRegistration::where('sync', 0)->get();
         return 'ok';
 
     } catch (\Exception $e) {
@@ -350,7 +352,7 @@ return $remaining = CustomerRegistration::where('sync', 0)->get();
     ->select('orders.*')
     ->orderBy('orders.id', 'ASC')
     ->where('sync',0)
-    ->whereBetween('id',[2501,3000])
+    ->whereBetween('id',[1,300])
     ->get();
     foreach($orders as $order)
     {
