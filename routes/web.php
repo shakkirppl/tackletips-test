@@ -185,6 +185,7 @@ Route::get('refund-cancellation-policy', 'App\Http\Controllers\AnotherTransactio
 Route::get('shipping-policy', 'App\Http\Controllers\AnotherTransactionController@shipping_policy');
 Route::get('terms-and-conditions', 'App\Http\Controllers\AnotherTransactionController@terms_and_conditions');
 
- Route::get('order-updation', 'App\Http\Controllers\AnotherTransactionController@order_updation');
+Route::get('order-updation/{from}/{to}', 'App\Http\Controllers\AnotherTransactionController@order_updation');
+//  Route::get('order-updation', 'App\Http\Controllers\AnotherTransactionController@order_updation');
  Route::get('user-updation', 'App\Http\Controllers\AnotherTransactionController@user_updation');
 require __DIR__.'/auth.php';

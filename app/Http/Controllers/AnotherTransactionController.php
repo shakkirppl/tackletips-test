@@ -345,7 +345,7 @@ public function user_updation(Request $request)
     }
 }
 
-    public function order_updation(Request $request)
+    public function order_updation(Request $request, $from, $to)
     {
   
         try {
@@ -354,7 +354,8 @@ public function user_updation(Request $request)
     ->select('orders.*')
     ->orderBy('orders.id', 'ASC')
     ->where('sync',0)
-    ->whereBetween('id',[1,300])
+    // ->whereBetween('id',[1,300])
+       ->whereBetween('id', [$from, $to])
     ->get();
     foreach($orders as $order)
     {
