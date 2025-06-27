@@ -1,39 +1,32 @@
-
-window.onscroll = function () { myFunction() };
-
+window.onscroll = function () {
+   myFunction()
+};
 var header = document.getElementById("myHeader");
 var sticky = header.offsetTop;
 
 function myFunction() {
    if (window.pageYOffset > sticky) {
       header.classList.add("sticky");
-
    } else {
       header.classList.remove("sticky");
    }
 }
-
 var swiper = new Swiper(".swiper-main", {
    loop: true, // Optional: Loop through the slides
    pagination: {
-       el: '.swiper-pagination',
-       clickable: true,
+      el: '.swiper-pagination',
+      clickable: true,
    },
    navigation: {
-       nextEl: '.swiper-button-next',
-       prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
    },
 });
-
 var swiper = new Swiper(".swiper-logo", {
-
-
    autoplay: {
       delay: 2500,
       disableOnInteraction: false,
    },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -43,7 +36,6 @@ var swiper = new Swiper(".swiper-logo", {
       el: ".swiper-pagination",
       clickable: true,
    },
-
    breakpoints: {
       0: {
          slidesPerView: 3, // 2 slides for screen widths >= 640px
@@ -59,16 +51,11 @@ var swiper = new Swiper(".swiper-logo", {
       }
    }
 });
-
 var swiper = new Swiper(".swiper-newarrival", {
-
-
    // autoplay: {
    //    delay: 2500,
    //    disableOnInteraction: false,
    // },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -78,7 +65,6 @@ var swiper = new Swiper(".swiper-newarrival", {
       el: ".swiper-pagination",
       clickable: true,
    },
-
    breakpoints: {
       0: {
          slidesPerView: 2, // 2 slides for screen widths >= 640px
@@ -94,16 +80,11 @@ var swiper = new Swiper(".swiper-newarrival", {
       }
    }
 });
-
 var swiper = new Swiper(".popular-products", {
-
-
    // autoplay: {
    //    delay: 2500,
    //    disableOnInteraction: false,
    // },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -128,16 +109,11 @@ var swiper = new Swiper(".popular-products", {
       }
    }
 });
-
 var swiper = new Swiper(".popular-products", {
-
-
    // autoplay: {
    //    delay: 2500,
    //    disableOnInteraction: false,
    // },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -162,16 +138,11 @@ var swiper = new Swiper(".popular-products", {
       }
    }
 });
-
 var swiper = new Swiper(".youtube-gallery", {
-
-
    // autoplay: {
    //    delay: 2500,
    //    disableOnInteraction: false,
    // },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -196,16 +167,11 @@ var swiper = new Swiper(".youtube-gallery", {
       }
    }
 });
-
 var swiper = new Swiper(".instagram-gallery", {
-
-
    autoplay: {
       delay: 2500,
       disableOnInteraction: false,
    },
-
-
    // Navigation arrows
    navigation: {
       nextEl: '.swiper-button-next',
@@ -230,30 +196,21 @@ var swiper = new Swiper(".instagram-gallery", {
       }
    }
 });
-
-
-
 //  ccccccccccc
 var swiper = new Swiper(".testimonial", {
-
    loop: true, // Optional: Loop through the slides
    autoplay: {
       delay: 2500,
       disableOnInteraction: false,
    },
-
-  
    pagination: {
-       el: '.swiper-pagination',
-       clickable: true,
+      el: '.swiper-pagination',
+      clickable: true,
    },
    navigation: {
-       nextEl: '.swiper-button-next',
-       prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
    },
-
-
-
    breakpoints: {
       0: {
          slidesPerView: 1, // 2 slides for screen widths >= 640px
@@ -269,54 +226,49 @@ var swiper = new Swiper(".testimonial", {
       }
    }
 });
-
-
-
 //mobile sliding box
 const menuBtn = document.getElementById("menu-btn");
 const closeBtn = document.getElementById("close-btn");
 const box = document.getElementById("menu-box");
-
 menuBtn.addEventListener("click", () => {
    box.classList.add("active");
 });
-
 closeBtn.addEventListener("click", () => {
    box.classList.remove("active");
 });
-
-
-
-
+//mobile sliding product box
+const menuBtnproduct = document.getElementById("menu-btn-product");
+const closeBtnproduct = document.getElementById("close-btn-product");
+const boxproduct = document.getElementById("menu-box-product");
+menuBtnproduct.addEventListener("click", () => {
+   boxproduct.classList.add("active");
+});
+closeBtnproduct.addEventListener("click", () => {
+   boxproduct.classList.remove("active");
+});
 document.addEventListener("DOMContentLoaded", function () {
    document.querySelectorAll(".sub-categories").forEach(category => {
-       category.addEventListener("click", function (event) {
-           // Prevents closing when clicking inside the submenu
-           if (event.target.closest(".sub-list-mobile")) return;
-
-           // Toggle current submenu
-           const isActive = this.classList.contains("active");
-
-           // Close all submenus
-           document.querySelectorAll(".sub-categories").forEach(item => {
-               item.classList.remove("active");
-           });
-
-           // If it wasn't active before, activate it
-           if (!isActive) {
-               this.classList.add("active");
-           }
-       });
+      category.addEventListener("click", function (event) {
+         // Prevents closing when clicking inside the submenu
+         if (event.target.closest(".sub-list-mobile")) return;
+         // Toggle current submenu
+         const isActive = this.classList.contains("active");
+         // Close all submenus
+         document.querySelectorAll(".sub-categories").forEach(item => {
+            item.classList.remove("active");
+         });
+         // If it wasn't active before, activate it
+         if (!isActive) {
+            this.classList.add("active");
+         }
+      });
    });
-
    // Close submenu when clicking outside
    document.addEventListener("click", function (event) {
-       if (!event.target.closest(".sub-categories")) {
-           document.querySelectorAll(".sub-categories").forEach(item => {
-               item.classList.remove("active");
-           });
-       }
+      if (!event.target.closest(".sub-categories")) {
+         document.querySelectorAll(".sub-categories").forEach(item => {
+            item.classList.remove("active");
+         });
+      }
    });
 });
-
-

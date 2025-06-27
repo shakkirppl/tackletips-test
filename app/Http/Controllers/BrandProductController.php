@@ -24,9 +24,12 @@ class BrandProductController extends Controller
                         ->where('items.prime_id','=','0')
                         ->where('brands.url_word','=',$cat_id)
                         ->distinct();
-                if ($request->has('max_price')) {
-                            $query->where('product_price_offer', '<=', $request->max_price);
-                }  
+           if ($request->has('min_price') && $request->has('max_price')) {
+    $query->whereBetween('product_price_offer', [
+        $request->min_price,
+        $request->max_price
+    ]);
+}
             //       if ($sort == 'price_low_high') {
             //     $query->orderBy('items.product_price_offer', 'asc');
             // } elseif ($sort == 'price_high_low') {

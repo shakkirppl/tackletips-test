@@ -139,6 +139,13 @@ public function printSelected(Request $request)
 }
 
 
+public function unpaid()
+{
+    $orders = Orders::with('orderStatus', 'customer')
+        ->where('paid', 0)
+        ->paginate(10);
 
+    return view('orders.unpaid', compact('orders'));
+}
 
 }

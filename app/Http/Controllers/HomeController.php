@@ -121,6 +121,7 @@ class HomeController extends Controller
 
 
         $data['slider']=HomeImages::where('img_for','web') ->orderBy('img_id','desc')->get();
+          $data['slider_mob']=HomeImages::where('img_for','mobile') ->orderBy('img_id','desc')->get();
         $data['feat_brands']=Brands::where('featured','=','1')->get();
         $data['brands']=Brands::get();
         $data['category']=Category::orderBy('id','asc')->get();
@@ -162,10 +163,10 @@ public function search(Request $request){
                     $count=$a->count();
                     $data['cat_name']='Result for:'.$key.'('.$count.')'; 
     
-           
+                    $data['key']=$key;
                     $data['category']=  Category::with('subcategories:id,name,parent_id,slug')->get();
                     $data['brands']=Brands::get();
-       return view('front-end.product-categories',$data);
+       return view('front-end.product-search',$data);
     
     
     }

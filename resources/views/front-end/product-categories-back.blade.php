@@ -18,7 +18,9 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+      <!-- noUiSlider CSS -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css">
+      <!-- noUiSlider JS -->
       <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
    </head>
    <body>
@@ -55,6 +57,14 @@
                            </div>
                            @endforeach
                         </div>
+                        <!-- <h1>Price</h1> -->
+                        <!-- <div class="single-price-filter">
+                           <label for="priceRange">
+                           Max Price: ₹<span id="priceLabel">500</span>
+                           </label>
+                           <input type="range" id="priceRange" min="0" max="1000" value="500" step="10"
+                           data-url="{{ url()->current() }}">
+                           </div> -->
                         <h1>Brands</h1>
                         <div class="brand-filtration">
                            <ul>
@@ -102,37 +112,34 @@
                      </div>
                   </div>
                </div>
-           <div class="col-lg-9 col-md-12"> 
-  <div class="filterby-price-main">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="filter-price-wrapper-main">
-          <div class="sort-dropdown">
-            <label for="sort-price">Sort by Price:</label>
-            <div class="custom-select-filter">
-              <div class="select-btn-filter" onclick="toggleDropdownFilter()">
-                {{ ucfirst(str_replace('_', ' ', request('sort', 'Select an option'))) }} ▼
-              </div>
-              <div class="dropdown-filter" id="dropdownOptions">
-                <div onclick="selectOptionFilter(this, 'newest')">New Arrivals</div>
-                <div onclick="selectOptionFilter(this, 'price_low_high')">Price: Low to High</div>
-                <div onclick="selectOptionFilter(this, 'price_high_low')">Price: High to Low</div>
-              </div>
-            </div>
-          </div>
+               <div class="col-lg-9 col-md-12">
+                  <div class="filterby-price-main">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                  <!-- Sort Dropdown -->
+                  <div>
+                     <label for="sort-select">Sort by:</label>
+                     <select id="sort-select" class="form-select d-inline-block w-auto">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                        <option value="price_low_high" {{ request('sort') == 'price_low_high' ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price_high_low" {{ request('sort') == 'price_high_low' ? 'selected' : '' }}>Price: High to Low</option>
+                     </select>
+                  </div>
 
-          <div class="filter-price-wrapper">
-            <div>
-              Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 10000) }}</span>
-            </div>
-            <div id="priceSlider" data-url="{{ url()->current() }}"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- </div> -->
-
+                  <!-- Price Slider -->
+                  <div class="text-end">
+                     <div>
+                        Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 10000) }}</span>
+                     </div>
+                     <div id="priceSlider" data-url="{{ url()->current() }}"></div>
+                  </div>
+               </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                   <!-- old product section -->
                   <div id="productList" class="product-list">
                      <div class="row">
@@ -225,7 +232,46 @@
          });
       </script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
+      <!-- <script>
+         let sort = '';
+         let maxPrice = $('#priceRange').val();
+         
+         function fetchFilteredData() {
+             const url = $('#priceRange').data('url');
+         
+             $.ajax({
+                 url: url,
+                 method: 'GET',
+                 data: {
+                     max_price: maxPrice,
+                     sort: sort
+                 },
+                 beforeSend: function () {
+                     $('#productList').html('<p>Loading...</p>');
+                 },
+                 success: function (response) {
+                     $('#productList').html($(response).find('#productList').html());
+                 }
+             });
+         }
+         
+         $('#priceRange').on('input', function () {
+             maxPrice = $(this).val();
+             $('#priceLabel').text(maxPrice);
+             fetchFilteredData();
+         });
+         
+         function selectOptionFilter(el, value) {
+             sort = value;
+             $('.select-btn-filter').text($(el).text() + ' ▼');
+             fetchFilteredData();
+         }
+         </script> -->
+      <!-- Scripts -->
+   <script src="{{ asset('front-end/js/bootstrap.bundle.min.js') }}"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <script>
       const priceSlider = document.getElementById('priceSlider');
       const minPrice = document.getElementById('minPrice');
       const maxPrice = document.getElementById('maxPrice');
@@ -267,52 +313,5 @@
          window.location.href = `${currentUrl}?${params.toString()}`;
       });
    </script>
-      <script>
-         function toggleDropdownFilter() {
-            document.querySelector('.dropdown-filter').classList.toggle('active');
-         }
-         
-         function selectOptionFilter(option, value) {
-            document.querySelector('.select-btn-filter').textContent = option.textContent;
-            document.querySelector('.dropdown-filter').classList.remove('active');
-            console.log('Selected value:', value);
-         }
-         
-         function filterProducts(order) {
-            console.log('Filtering products:', order);
-            // Add product sorting logic here
-         }
-         
-         // Close dropdown on outside click
-         window.onclick = function (e) {
-            if (!e.target.closest('.custom-select-filter')) {
-               document.querySelector('.dropdown-filter').classList.remove('active');
-            }
-         };
-      </script>
-      <script>
-function toggleDropdownFilter() {
-  document.getElementById("dropdownOptions").classList.toggle("show");
-}
-
-function selectOptionFilter(element, value) {
-  // Update button text
-  document.querySelector(".select-btn-filter").innerText = element.innerText + " ▼";
-
-  // Update URL parameters
-  const currentUrl = window.location.href.split('?')[0];
-  const params = new URLSearchParams(window.location.search);
-  params.set('sort', value);
-  window.location.href = `${currentUrl}?${params.toString()}`;
-}
-
-// Optional: close dropdown if clicked outside
-window.addEventListener('click', function(e) {
-  if (!e.target.matches('.select-btn-filter')) {
-    document.getElementById("dropdownOptions")?.classList.remove("show");
-  }
-});
-</script>
-
    </body>
 </html>

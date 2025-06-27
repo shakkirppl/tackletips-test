@@ -45,7 +45,9 @@ class SingleProductController extends Controller
         $data['group']=Item::where('status','=','1')
                         ->where('product_id','!=',$product_id)
                         ->where('group_id','=',$pro_id)
-                        ->where('group_id','!=',0)               
+                        ->where('group_id','!=',0) 
+                        ->orderBy('name', 'ASC')
+                        ->orderBy('sub_name', 'ASC')         
                        ->get();
         
         $data['product']=Item::select('items.id','items.product_id','items.name','items.sub_name','items.product_image','items.product_price','items.product_price_offer','items.total_stock_count as web_stock','items.offer_product','product_slug')
@@ -54,6 +56,8 @@ class SingleProductController extends Controller
                         ->where('group_id','!=',$pro_id)  
                         ->where('sub_category','=',$sub_cate_id)   
                         ->where('items.prime_id','=','0')
+                        ->orderBy('name', 'ASC')
+                        ->orderBy('sub_name', 'ASC')     
                         ->limit('9')
                        ->get();
 

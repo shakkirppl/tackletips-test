@@ -26,11 +26,12 @@ class FishingReportController extends Controller
             'tacke_used' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+    return 'ok';
         try {
-            if (!auth()->check()) {
-                return redirect()->back()->with('error', 'You must be logged in to submit a report.');
-            }
+            // return auth();
+            // if (!auth()->check()) {
+            //     return redirect()->back()->with('error', 'You must be logged in to submit a report.');
+            // }
     
             // Ensure directory exists
             $destinationPath = public_path('uploads/fishreports');
@@ -51,7 +52,7 @@ class FishingReportController extends Controller
     
             // Store Fishing Report
             FishReports::create([
-                'user_id' => auth()->id(),
+                'user_id' => 1,
                 'name' => $request->name,
                 'place' => $request->place,
                 'tacke_used' => $request->tacke_used,

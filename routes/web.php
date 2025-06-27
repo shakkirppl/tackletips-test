@@ -27,6 +27,11 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDashboardController;
 use App\Http\Controllers\FishingReportController;
 use App\Http\Controllers\ReviewController;
+
+use Illuminate\Support\Facades\Password;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\HomeImagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,6 +132,13 @@ Route::patch('/reviews/{id}/activate', [ReviewController::class, 'active'])->nam
 Route::patch('/reviews/{id}/block', [ReviewController::class, 'block'])->name('reviews.block');
 
 Route::get('/reviews/{id}', [ReviewController::class, 'view_review'])->name('reviews.show');
+
+Route::get('home-slider-create', [HomeImagesController::class, 'create'])->name('home_slider.create');
+Route::post('/home-slider/store', [HomeImagesController::class, 'store'])->name('home_slider.store');
+Route::get('/home-slider', [HomeImagesController::class, 'index'])->name('home_slider.index');
+Route::delete('/home-slider/{img_id}', [HomeImagesController::class, 'destroy'])->name('home_slider.destroy');
+
+Route::get('orders-unpaid', [AllOrderController::class, 'unpaid'])->name('orders.unpaid');
 });
 });
 
@@ -188,4 +200,11 @@ Route::get('terms-and-conditions', 'App\Http\Controllers\AnotherTransactionContr
 Route::get('order-updation/{from}/{to}', 'App\Http\Controllers\AnotherTransactionController@order_updation');
 //  Route::get('order-updation', 'App\Http\Controllers\AnotherTransactionController@order_updation');
  Route::get('user-updation', 'App\Http\Controllers\AnotherTransactionController@user_updation');
-require __DIR__.'/auth.php';
+
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+ require __DIR__.'/auth.php';

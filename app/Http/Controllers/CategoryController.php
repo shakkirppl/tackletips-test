@@ -24,16 +24,19 @@ try {
          ->where('items.status','=','1')
          ->where('items.category_id','=',$cat_id)
          ->distinct(); 
-         if ($request->has('max_price')) {
-          $query->where('product_price_offer', '<=', $request->max_price);
-}  
-// if ($sort == 'price_low_high') {
-//  $query->orderBy('items.product_price_offer', 'asc');
-// } elseif ($sort == 'price_high_low') {
-//  $query->orderBy('items.product_price_offer', 'desc');
-// } else {
-//  $query->orderBy('items.created_at', 'desc');
-// }  
+if ($request->has('min_price') && $request->has('max_price')) {
+    $query->whereBetween('product_price_offer', [
+        $request->min_price,
+        $request->max_price
+    ]);
+}
+if ($sort == 'price_low_high') {
+   $query->orderBy('items.product_price_offer', 'asc');
+} elseif ($sort == 'price_high_low') {
+   $query->orderBy('items.product_price_offer', 'desc');
+} else {
+   $query->orderBy('items.created_at', 'desc');
+}
            
         $data['product']  =$query->paginate(80);      
         $data['category']=  Category::with('subcategories:id,name,parent_id,slug')->get();
@@ -66,16 +69,19 @@ try {
                    ->where('items.status','=','1')
                   ->where('items.sub_category','=',$cat_id)
                    ->distinct(); 
-                   if ($request->has('max_price')) {
-                    $query->where('product_price_offer', '<=', $request->max_price);
-        }  
-          // if ($sort == 'price_low_high') {
-          //  $query->orderBy('items.product_price_offer', 'asc');
-          // } elseif ($sort == 'price_high_low') {
-          //  $query->orderBy('items.product_price_offer', 'desc');
-          // } else {
-          //  $query->orderBy('items.created_at', 'desc');
-          // }  
+  if ($request->has('min_price') && $request->has('max_price')) {
+    $query->whereBetween('product_price_offer', [
+        $request->min_price,
+        $request->max_price
+    ]);
+}
+        if ($sort == 'price_low_high') {
+   $query->orderBy('items.product_price_offer', 'asc');
+} elseif ($sort == 'price_high_low') {
+   $query->orderBy('items.product_price_offer', 'desc');
+} else {
+   $query->orderBy('items.created_at', 'desc');
+}
                      
                   $data['product']  =$query->paginate(80);      
                   $data['category']=  Category::with('subcategories:id,name,parent_id,slug')->get();

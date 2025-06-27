@@ -105,6 +105,7 @@
                 <li class="nav-item"> <a class="nav-link" href="{{URL::to('orders-index')}}">Orders</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{URL::to('orders-tracking')}}"> Order Tracking</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{URL::to('orders-processing')}}">Processing Orders</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{URL::to('orders-unpaid')}}">Unpaid Orders</a></li>
                 
                  </ul>
             </div>
@@ -112,6 +113,18 @@
           </li>
 
 
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#home-image" aria-expanded="false" aria-controls="charts">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Home Page</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="home-image">
+              <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{URL::to('home-slider')}}">Home Slider Images</a></li>
+                 </ul>
+            </div>
+          </li>
 
 
          

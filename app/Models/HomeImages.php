@@ -9,4 +9,13 @@ class HomeImages extends Model
 {
     protected $table = 'home_images';
     use HasFactory;
+    protected $primaryKey = 'img_id';
+   
+      protected $fillable = [
+        'img_name',
+        'img_for',
+        'url',
+       
+
+    ];
 }
