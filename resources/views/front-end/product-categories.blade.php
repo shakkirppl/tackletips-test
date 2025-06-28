@@ -20,6 +20,44 @@
       <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css">
       <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+   <style>
+      .custom-select-filter {
+  position: relative;
+  width: 200px;
+}
+
+.select-btn-filter {
+  background-color: #fff;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.dropdown-filter {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.dropdown-filter div {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-filter div:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-filter.show {
+  display: block;
+}
+
+      </style>
    </head>
    <body>
       @include('front-end.include.header')
@@ -174,9 +212,7 @@
          <div class="padding-top"></div>
       </section>
       @include('front-end.include.footar')
-      <script>
-         AOS.init();
-      </script>
+
       <script src="{{URL::to('/')}}/front-end/js/swiper.bundle.min.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/main.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/bootstrap.bundle.min.js"></script>
@@ -267,31 +303,10 @@
          window.location.href = `${currentUrl}?${params.toString()}`;
       });
    </script>
-      <script>
-         function toggleDropdownFilter() {
-            document.querySelector('.dropdown-filter').classList.toggle('active');
-         }
-         
-         function selectOptionFilter(option, value) {
-            document.querySelector('.select-btn-filter').textContent = option.textContent;
-            document.querySelector('.dropdown-filter').classList.remove('active');
-            console.log('Selected value:', value);
-         }
-         
-         function filterProducts(order) {
-            console.log('Filtering products:', order);
-            // Add product sorting logic here
-         }
-         
-         // Close dropdown on outside click
-         window.onclick = function (e) {
-            if (!e.target.closest('.custom-select-filter')) {
-               document.querySelector('.dropdown-filter').classList.remove('active');
-            }
-         };
-      </script>
-      <script>
+
+<script>
 function toggleDropdownFilter() {
+  event.stopPropagation(); // Prevent immediate close
   document.getElementById("dropdownOptions").classList.toggle("show");
 }
 
@@ -306,13 +321,14 @@ function selectOptionFilter(element, value) {
   window.location.href = `${currentUrl}?${params.toString()}`;
 }
 
-// Optional: close dropdown if clicked outside
+// Close dropdown if clicking outside
 window.addEventListener('click', function(e) {
-  if (!e.target.matches('.select-btn-filter')) {
+  if (!e.target.closest('.custom-select-filter')) {
     document.getElementById("dropdownOptions")?.classList.remove("show");
   }
 });
 </script>
+
 
    </body>
 </html>

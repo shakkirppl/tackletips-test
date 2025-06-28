@@ -44,7 +44,7 @@
                                 <option value="">----Select----</option>
                                 <option value="web">Web (Size 1388*400)</option>
                                 <option value="app">App (Size 708*369)</option>
-                                <option value="mobile">Mobile (Size 500*500)</option> {{-- Added Mobile --}}
+                                <option value="mobile">Mobile (Size 768px *400px)</option> {{-- Added Mobile --}}
                             </select>
                         </div>
 
