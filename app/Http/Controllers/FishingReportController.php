@@ -26,7 +26,7 @@ class FishingReportController extends Controller
             'tacke_used' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    return 'ok';
+
         try {
             // return auth();
             // if (!auth()->check()) {
