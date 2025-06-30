@@ -52,7 +52,7 @@
                      <?php $pro_id = $sliders->url; ?> 
                      <div class="swiper-slide ">
                         
-                        <img class="desktop-view" src="{{url('uploads/home-slider/'.$sliders->img_name)}}" alt="">
+                        <img class="mobile-view" src="{{url('uploads/home-slider/'.$sliders->img_name)}}" alt="">
                      </div>
                      <!-- </a> -->
                      @endforeach  

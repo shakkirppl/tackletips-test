@@ -161,7 +161,7 @@
 
           <div class="filter-price-wrapper">
             <div>
-              Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 10000) }}</span>
+              Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 100000) }}</span>
             </div>
             <div id="priceSlider" data-url="{{ url()->current() }}"></div>
           </div>
@@ -268,11 +268,11 @@
 
       if (priceSlider && minPrice && maxPrice) {
          noUiSlider.create(priceSlider, {
-            start: [{{ request('min_price', 0) }}, {{ request('max_price', 10000) }}],
+            start: [{{ request('min_price', 0) }}, {{ request('max_price', 100000) }}],
             connect: true,
             range: {
                'min': 0,
-               'max': 10000
+               'max': 100000
             },
             step: 100,
             tooltips: true,
