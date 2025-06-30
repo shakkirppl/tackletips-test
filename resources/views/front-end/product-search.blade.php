@@ -20,6 +20,44 @@
       <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css">
       <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+      <style>
+      .custom-select-filter {
+  position: relative;
+  width: 200px;
+}
+
+.select-btn-filter {
+  background-color: #fff;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.dropdown-filter {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.dropdown-filter div {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-filter div:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-filter.show {
+  display: block;
+}
+
+      </style>
    </head>
    <body>
       @include('front-end.include.header')
@@ -104,33 +142,34 @@
                   </div>
                </div>
                <div class="col-md-9">
-                  <div class="filterby-price-main">
-                     <div class="row">
-                        <div class="col-md-12">
-                           <div class="filter-price-wrapper-main">
-                              <div class="sort-dropdown">
-                                 <label for="sort-price">Sort by Price:</label>
-                                 <div class="custom-select-filter">
-                                    <div class="select-btn-filter" onclick="toggleDropdownFilter()">
-                                       {{ ucfirst(str_replace('_', ' ', request('sort', 'Select an option'))) }} ▼
-                                    </div>
-                                    <div class="dropdown-filter" id="dropdownOptions">
-                                       <div onclick="selectOptionFilter(this, 'newest')">New Arrivals</div>
-                                       <div onclick="selectOptionFilter(this, 'price_low_high')">Price: Low to High</div>
-                                       <div onclick="selectOptionFilter(this, 'price_high_low')">Price: High to Low</div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="filter-price-wrapper">
-                                 <div>
-                                    Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 100000) }}</span>
-                                 </div>
-                                 <div id="priceSlider" data-url="{{ url()->current() }}"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+              <div class="filterby-price-main">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="filter-price-wrapper-main">
+          <div class="sort-dropdown">
+            <label for="sort-price">Sort by Price:</label>
+            <div class="custom-select-filter">
+              <div class="select-btn-filter" onclick="toggleDropdownFilter()">
+                {{ ucfirst(str_replace('_', ' ', request('sort', 'Select an option'))) }} ▼
+              </div>
+              <div class="dropdown-filter" id="dropdownOptions">
+                <div onclick="selectOptionFilter(this, 'newest')">New Arrivals</div>
+                <div onclick="selectOptionFilter(this, 'price_low_high')">Price: Low to High</div>
+                <div onclick="selectOptionFilter(this, 'price_high_low')">Price: High to Low</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-price-wrapper">
+            <div>
+              Price: ₹<span id="minPrice">{{ request('min_price', 0) }}</span> - ₹<span id="maxPrice">{{ request('max_price', 100000) }}</span>
+            </div>
+            <div id="priceSlider" data-url="{{ url()->current() }}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
                   <!-- old product section -->
                   <div id="productList" class="product-list">
                      <div class="row">
@@ -172,9 +211,7 @@
          <div class="padding-top"></div>
       </section>
       @include('front-end.include.footar')
-      <script>
-         AOS.init();
-      </script>
+   
       <script src="{{URL::to('/')}}/front-end/js/swiper.bundle.min.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/main.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/bootstrap.bundle.min.js"></script>
@@ -184,7 +221,7 @@
       <script src="{{URL::to('/')}}/front-end/js/owl.carousel.min.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/scriptfont.js"></script>
       <script src="{{URL::to('/')}}/front-end/js/aos.js"></script>
-     <script>
+      <script>
          window.onscroll = function () { myFunction() };
          var header = document.getElementById("myHeader");
          var sticky = header.offsetTop;
@@ -224,70 +261,73 @@
       </script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
-         const priceSlider = document.getElementById('priceSlider');
-         const minPrice = document.getElementById('minPrice');
-         const maxPrice = document.getElementById('maxPrice');
-         
-         if (priceSlider && minPrice && maxPrice) {
-            noUiSlider.create(priceSlider, {
-               start: [{{ request('min_price', 0) }}, {{ request('max_price', 100000) }}],
-               connect: true,
-               range: {
-                  'min': 0,
-                  'max': 100000
-               },
-               step: 100,
-               tooltips: true,
-               format: {
-                  to: value => Math.round(value),
-                  from: value => Number(value)
-               }
-            });
-         
-            priceSlider.noUiSlider.on('update', function (values) {
-               minPrice.textContent = values[0];
-               maxPrice.textContent = values[1];
-            });
-         
-            priceSlider.noUiSlider.on('change', function (values) {
-               const currentUrl = window.location.href.split('?')[0];
-               const params = new URLSearchParams(window.location.search);
-               params.set('min_price', values[0]);
-               params.set('max_price', values[1]);
-               window.location.href = `${currentUrl}?${params.toString()}`;
-            });
-         }
-         
-         document.getElementById('sort-select')?.addEventListener('change', function () {
+      const priceSlider = document.getElementById('priceSlider');
+      const minPrice = document.getElementById('minPrice');
+      const maxPrice = document.getElementById('maxPrice');
+
+      if (priceSlider && minPrice && maxPrice) {
+         noUiSlider.create(priceSlider, {
+            start: [{{ request('min_price', 0) }}, {{ request('max_price', 100000) }}],
+            connect: true,
+            range: {
+               'min': 0,
+               'max': 100000
+            },
+            step: 100,
+            tooltips: true,
+            format: {
+               to: value => Math.round(value),
+               from: value => Number(value)
+            }
+         });
+
+         priceSlider.noUiSlider.on('update', function (values) {
+            minPrice.textContent = values[0];
+            maxPrice.textContent = values[1];
+         });
+
+         priceSlider.noUiSlider.on('change', function (values) {
             const currentUrl = window.location.href.split('?')[0];
             const params = new URLSearchParams(window.location.search);
-            params.set('sort', this.value);
+            params.set('min_price', values[0]);
+            params.set('max_price', values[1]);
             window.location.href = `${currentUrl}?${params.toString()}`;
          });
-      </script>
-      <script>
-         function toggleDropdownFilter() {
-           event.stopPropagation(); // Prevent immediate close
-           document.getElementById("dropdownOptions").classList.toggle("show");
-         }
-         
-         function selectOptionFilter(element, value) {
-           // Update button text
-           document.querySelector(".select-btn-filter").innerText = element.innerText + " ▼";
-         
-           // Update URL parameters
-           const currentUrl = window.location.href.split('?')[0];
-           const params = new URLSearchParams(window.location.search);
-           params.set('sort', value);
-           window.location.href = `${currentUrl}?${params.toString()}`;
-         }
-         
-         // Close dropdown if clicking outside
-         window.addEventListener('click', function(e) {
-           if (!e.target.closest('.custom-select-filter')) {
-             document.getElementById("dropdownOptions")?.classList.remove("show");
-           }
-         });
-      </script>
+      }
+
+      document.getElementById('sort-select')?.addEventListener('change', function () {
+         const currentUrl = window.location.href.split('?')[0];
+         const params = new URLSearchParams(window.location.search);
+         params.set('sort', this.value);
+         window.location.href = `${currentUrl}?${params.toString()}`;
+      });
+   </script>
+
+<script>
+function toggleDropdownFilter() {
+  event.stopPropagation(); // Prevent immediate close
+  document.getElementById("dropdownOptions").classList.toggle("show");
+}
+
+function selectOptionFilter(element, value) {
+  // Update button text
+  document.querySelector(".select-btn-filter").innerText = element.innerText + " ▼";
+
+  // Update URL parameters
+  const currentUrl = window.location.href.split('?')[0];
+  const params = new URLSearchParams(window.location.search);
+  params.set('sort', value);
+  window.location.href = `${currentUrl}?${params.toString()}`;
+}
+
+// Close dropdown if clicking outside
+window.addEventListener('click', function(e) {
+  if (!e.target.closest('.custom-select-filter')) {
+    document.getElementById("dropdownOptions")?.classList.remove("show");
+  }
+});
+</script>
+
+
    </body>
 </html>

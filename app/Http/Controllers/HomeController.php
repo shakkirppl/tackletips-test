@@ -143,33 +143,90 @@ return $e->getMessage();
 
    
 }
-public function search(Request $request){
+public function search(Request $request)
+{
+    $key = $request->input('key');
+    $sort = $request->input('sort'); // get sort option
 
+    $data['pagename'] = $key;
 
-    $key=$request->input('key');
-    
-     $data['pagename']=$key; 
-    
-                    $a=$data['product']=Item::select('items.id','items.product_id','items.name','items.sub_name','items.product_image','items.product_price','items.product_price_offer','items.total_stock_count as web_stock','items.offer_product','product_slug')
-                    ->join('brands','brands.id','=','items.brand_id')
-                    ->where('items.status','=',1)
-                    ->where('items.name','like','%'.$key.'%')
-                    ->orwhere('items.sub_name','like','%'.$key.'%')
-                    ->orwhere('items.measurement_name','like','%'.$key.'%')
-                    ->orwhere('items.tag_name','like','%'.$key.'%')
-                    ->orwhere('brands.name','like','%'.$key.'%') 
-                    
-                    ->paginate(20)->appends($request->except('page'));
-                    $count=$a->count();
-                    $data['cat_name']='Result for:'.$key.'('.$count.')'; 
-    
-                    $data['key']=$key;
-                    $data['category']=  Category::with('subcategories:id,name,parent_id,slug')->get();
-                    $data['brands']=Brands::get();
-       return view('front-end.product-search',$data);
-    
-    
+    $query = Item::select(
+            'items.id',
+            'items.product_id',
+            'items.name',
+            'items.sub_name',
+            'items.product_image',
+            'items.product_price',
+            'items.product_price_offer',
+            'items.total_stock_count as web_stock',
+            'items.offer_product',
+            'product_slug'
+        )
+        ->join('brands', 'brands.id', '=', 'items.brand_id')
+        ->where('items.status', 1)
+        ->where(function ($q) use ($key) {
+            $q->where('items.name', 'like', '%' . $key . '%')
+              ->orWhere('items.sub_name', 'like', '%' . $key . '%')
+              ->orWhere('items.measurement_name', 'like', '%' . $key . '%')
+              ->orWhere('items.tag_name', 'like', '%' . $key . '%')
+              ->orWhere('brands.name', 'like', '%' . $key . '%');
+        });
+
+    // ✅ Price filter
+    if ($request->has('min_price') && $request->has('max_price')) {
+        $query->whereBetween('items.product_price_offer', [
+            $request->min_price,
+            $request->max_price
+        ]);
     }
+
+    // ✅ Sorting
+    if ($sort == 'price_low_high') {
+        $query->orderBy('items.product_price_offer', 'asc');
+    } elseif ($sort == 'price_high_low') {
+        $query->orderBy('items.product_price_offer', 'desc');
+    } else {
+        $query->orderBy('items.created_at', 'desc');
+    }
+
+    $data['product'] = $query->paginate(20)->appends($request->except('page'));
+    $count = $data['product']->total();
+
+    $data['cat_name'] = 'Result for: ' . $key . ' (' . $count . ')';
+    $data['key'] = $key;
+    $data['category'] = Category::with('subcategories:id,name,parent_id,slug')->get();
+    $data['brands'] = Brands::all();
+
+    return view('front-end.product-search', $data);
+}
+
+// public function search(Request $request){
+
+
+//     $key=$request->input('key');
+    
+//      $data['pagename']=$key; 
+    
+//                     $a=$data['product']=Item::select('items.id','items.product_id','items.name','items.sub_name','items.product_image','items.product_price','items.product_price_offer','items.total_stock_count as web_stock','items.offer_product','product_slug')
+//                     ->join('brands','brands.id','=','items.brand_id')
+//                     ->where('items.status','=',1)
+//                     ->where('items.name','like','%'.$key.'%')
+//                     ->orwhere('items.sub_name','like','%'.$key.'%')
+//                     ->orwhere('items.measurement_name','like','%'.$key.'%')
+//                     ->orwhere('items.tag_name','like','%'.$key.'%')
+//                     ->orwhere('brands.name','like','%'.$key.'%') 
+                    
+//                     ->paginate(20)->appends($request->except('page'));
+//                     $count=$a->count();
+//                     $data['cat_name']='Result for:'.$key.'('.$count.')'; 
+    
+//                     $data['key']=$key;
+//                     $data['category']=  Category::with('subcategories:id,name,parent_id,slug')->get();
+//                     $data['brands']=Brands::get();
+//        return view('front-end.product-search',$data);
+    
+    
+//     }
 public function getStates($countryId)
 {
     try {
