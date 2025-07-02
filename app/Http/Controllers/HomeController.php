@@ -186,7 +186,8 @@ public function search(Request $request)
     } elseif ($sort == 'price_high_low') {
         $query->orderBy('items.product_price_offer', 'desc');
     } else {
-        $query->orderBy('items.created_at', 'desc');
+       
+        $query->orderBy('items.id', 'desc');
     }
 
     $data['product'] = $query->paginate(20)->appends($request->except('page'));

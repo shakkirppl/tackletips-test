@@ -53,13 +53,13 @@
                </div>
                <div class="div-three">
                   <div class="social-media">
-                     <a href="https://www.facebook.com" target="_blank" class="social-link facebook">
+                     <a href="https://www.facebook.com/tackletipshd/?_rdr" target="_blank" class="social-link facebook">
                      <i class="fa fa-facebook"></i>
                      </a>
-                     <a href="https://www.instagram.com" target="_blank" class="social-link instagram">
+                     <a href="https://www.instagram.com/tackle_tips?igshid=baypxa508pyl" target="_blank" class="social-link instagram">
                      <i class="fa fa-instagram"></i>
                      </a>
-                     <a href="https://www.youtube.com" target="_blank" class="social-link youtube">
+                     <a href="https://www.youtube.com/c/TackleTips" target="_blank" class="social-link youtube">
                      <i class="fa fa-youtube"></i>
                      </a>
                   </div>

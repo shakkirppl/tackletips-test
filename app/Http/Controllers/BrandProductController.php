@@ -24,19 +24,23 @@ class BrandProductController extends Controller
                         ->where('items.prime_id','=','0')
                         ->where('brands.url_word','=',$cat_id)
                         ->distinct();
-           if ($request->has('min_price') && $request->has('max_price')) {
-    $query->whereBetween('product_price_offer', [
-        $request->min_price,
-        $request->max_price
-    ]);
-}
-            //       if ($sort == 'price_low_high') {
-            //     $query->orderBy('items.product_price_offer', 'asc');
-            // } elseif ($sort == 'price_high_low') {
-            //     $query->orderBy('items.product_price_offer', 'desc');
-            // } else {
-            //     $query->orderBy('items.created_at', 'desc');
-            // }  
+              // ✅ Price filter
+    if ($request->has('min_price') && $request->has('max_price')) {
+        $query->whereBetween('items.product_price_offer', [
+            $request->min_price,
+            $request->max_price
+        ]);
+    }
+
+    // ✅ Sorting
+    if ($sort == 'price_low_high') {
+        $query->orderBy('items.product_price_offer', 'asc');
+    } elseif ($sort == 'price_high_low') {
+        $query->orderBy('items.product_price_offer', 'desc');
+    } else {
+       
+        $query->orderBy('items.id', 'desc');
+    }
              $data['product']=$query->paginate(80);
         $data['category']=Category::with('subcategories:id,name,parent_id')->get();
         $data['brands']=Brands::get();

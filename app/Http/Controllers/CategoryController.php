@@ -35,7 +35,7 @@ if ($sort == 'price_low_high') {
 } elseif ($sort == 'price_high_low') {
    $query->orderBy('items.product_price_offer', 'desc');
 } else {
-   $query->orderBy('items.created_at', 'desc');
+   $query->orderBy('items.id', 'desc');
 }
            
         $data['product']  =$query->paginate(80);      
@@ -80,7 +80,7 @@ if ($sort == 'price_low_high') {
 } elseif ($sort == 'price_high_low') {
    $query->orderBy('items.product_price_offer', 'desc');
 } else {
-   $query->orderBy('items.created_at', 'desc');
+   $query->orderBy('items.id', 'desc');
 }
                      
                   $data['product']  =$query->paginate(80);      
@@ -201,7 +201,7 @@ if ($sort == 'price_low_high') {
               } elseif ($sort == 'price_high_low') {
                $query->orderBy('items.product_price_offer', 'desc');
               } else {
-               $query->orderBy('items.created_at', 'desc');
+               $query->orderBy('items.id', 'desc');
               }  
                          
                       $data['product']  =$query->paginate(80);   
