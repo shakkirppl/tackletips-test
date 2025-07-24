@@ -2465,21 +2465,18 @@ public function add_new_attribute_amt(Request $request){
 
         $destinationPath = 'uploads/product/thumb_images';
         $thumb_img = Image::make($photo->getRealPath())->resize(258,401);
-        // $watermark = Image::make('front-side/img/logo.png')->opacity(25);
-        // $thumb_img->insert($watermark,  'bottom-right', 5, 5);
+  
         $thumb_img->save($destinationPath.'/'.$storyimagename,80);
 
 
         $destinationPath2 = 'uploads/product/single-product';
         $thumb_img2 = Image::make($photo->getRealPath())->resize(700,700);
-        // $watermark = Image::make('front-side/img/logo.png')->opacity(25);
-        // $thumb_img2->insert($watermark,  'bottom-right', 5, 5);
+
         $thumb_img2->save($destinationPath2.'/'.$storyimagename,80);
 
         $destinationPath3 = 'uploads/product/single-product/small';
         $thumb_img3 = Image::make($photo->getRealPath())->resize(180,180);
-        // $watermark = Image::make('front-side/img/logo.png')->opacity(25);
-        // $thumb_img3->insert($watermark,  'bottom-right', 5, 5);
+
         $thumb_img3->save($destinationPath3.'/'.$storyimagename,80);
         
 

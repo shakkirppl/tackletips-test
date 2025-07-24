@@ -160,7 +160,7 @@ $data['Instagram_video']=VideoGallary::where('channel','Instagram')->limit('3')-
          $query->join('sub_category','sub_category.id','=','items.sub_category')
                           ->select('items.id','items.product_id','items.name','items.sub_name','items.product_image','items.product_price','items.product_price_offer','items.total_stock_count as web_stock','items.offer_product','items.product_slug')
                         ->where('items.status','=','1')
-                        ->where('items.sub_category','=',$cat_id)
+                        ->where('items.category_id','=',$cat_id)
                         ->distinct() 
                         ->paginate(80);
          

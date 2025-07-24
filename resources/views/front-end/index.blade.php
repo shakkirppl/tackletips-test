@@ -2,7 +2,7 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Tackle Tips</title>
       <link rel="shortcut icon" href="{{URL::to('/')}}/front-end/images/home/favicon.png">
       <link rel="stylesheet" href="{{URL::to('/')}}/front-end/css/main.css">
@@ -28,9 +28,8 @@
                   <div class="swiper-wrapper">
                      @foreach($slider as $sliders)
                      <?php $pro_id = $sliders->url; ?> 
-                     <div class="swiper-slide ">
-                        <img class="desktop-view" src="{{url('uploads/home-slider/'.$sliders->img_name)}}" alt="">
-                       
+                     <div class="swiper-slide">
+                        <img src="{{url('uploads/home-slider/'.$sliders->img_name)}}" alt="">
                      </div>
                      <!-- </a> -->
                      @endforeach  
@@ -39,29 +38,6 @@
                   <div class="swiper-button-prev"></div>
                   <div class="swiper-button-next"></div>
                </div>
-               
-            </div>
-         </div>
-      </section>
-      <section class="main-slider">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="swiper mySwiper swiper-main">
-                  <div class="swiper-wrapper">
-                     @foreach($slider_mob as $sliders)
-                     <?php $pro_id = $sliders->url; ?> 
-                     <div class="swiper-slide ">
-                        
-                        <img class="mobile-view" src="{{url('uploads/home-slider/'.$sliders->img_name)}}" alt="">
-                     </div>
-                     <!-- </a> -->
-                     @endforeach  
-                  </div>
-                  <div class="swiper-pagination"></div>
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
-               </div>
-               
             </div>
          </div>
       </section>
@@ -108,7 +84,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/reels')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/REELS HOME PAGE CATOGORY.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/reel.jpg" alt="">
                         <div class="categories-head">
                            <h1>Reel</h1>
                         </div>
@@ -118,7 +94,7 @@
                <div class="col-md-2 col-4" >
                   <a href="{{url('category-products/line')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/LINE HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/line.jpg" alt="">
                         <div class="categories-head">
                            <h1>Line</h1>
                         </div>
@@ -128,7 +104,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/rod')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/ROD HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/rod.jpg" alt="">
                         <div class="categories-head">
                            <h1>Rod</h1>
                         </div>
@@ -138,7 +114,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/apparel')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/APPAREL HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/Apparel.jpg" alt="">
                         <div class="categories-head">
                            <h1>Apparel</h1>
                         </div>
@@ -148,7 +124,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/terminal-tackle')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/TERMINAL TACKLE HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/Terminal.jpg" alt="">
                         <div class="categories-head">
                            <h1>Terminal Tackle</h1>
                         </div>
@@ -158,7 +134,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/lure')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/LURE HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/lure.jpg" alt="">
                         <div class="categories-head">
                            <h1>Lure</h1>
                         </div>
@@ -168,7 +144,7 @@
                <div class="col-md-2 col-4" >
                   <a href="{{url('category-products/spare-parts')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/SPARE PARTS HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/spare.jpg" alt="">
                         <div class="categories-head">
                            <h1>Spare Parts</h1>
                         </div>
@@ -178,7 +154,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('new-arrivals')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/NEW ARRIVAL HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/new-arrival.jpg" alt="">
                         <div class="categories-head">
                            <h1>New Arrivals</h1>
                         </div>
@@ -188,7 +164,7 @@
                <div class="col-md-2 col-4">
                   <a href="{{url('category-products/accessories')}}">
                      <div class="categories-img">
-                        <img src="{{URL::to('/')}}/front-end/categories/ACCESSORIES HOME PAGE CATOGARY IMAGE.jpg" alt="">
+                        <img src="{{URL::to('/')}}/front-end/categories/Accessories.jpg" alt="">
                         <div class="categories-head">
                            <h1>Accessories</h1>
                         </div>
@@ -269,7 +245,7 @@
                      <img src="{{URL::to('/')}}/front-end/images/home/banners/testimonial-add-banner-2x-scaled.jpg" alt="">
                      <div class="fishing-all-about-you-contents">
                         <h1>*Fishing Is All About *</h1>
-                        <p>Right Place . . . Right Time . . . Right Technique
+                        <p>Right Place . . . Right Time . . . Right Rechnique
                            Watch out video on our YouTube channel to know more about fishing tips & tricks
                         </p>
                         <a href="">https://youtube.com/@TackleTips</a>
